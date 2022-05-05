@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select class="form-control mx-auto w-auto" name="symbol">
+                <option disabled selected>Symbol</option>
+                {% for symbol in user_symbols %}
+                    {% if symbol["symbol"] != "-"%}
+                        <option value="{{ symbol["symbol"] }}">{{ symbol["symbol"] }}</option>
+                    {% endif %}
+                {% endfor%}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Shares" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit" onclick="document.getElementById('demo').setAttribute('style', 'display: block !important;')">Sell</button>
+    </form>
+{% endblock %}

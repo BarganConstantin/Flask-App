@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Type</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date/Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elem in data %}
+                {% if elem["shares"] != 0 %}
+                    <tr>
+                        <td>{{ elem["symbol"] }}</td>
+                        {% if elem["type"] == "BUY" %}
+                            <td style="color: green;">{{ elem["type"] }}</td>
+                        {% else %}
+                            <td style="color: red;">{{ elem["type"] }}</td>
+                        {% endif %}
+                        <td>{{ elem["shares"] }}</td>
+                        <td>{{ elem["price"] }}</td>
+                        <td>{{ elem["day"] }}/{{ elem["month"] }}/{{ elem["year"] }} {{ elem["hour"] }}:{{ elem["minute"] }}:{{ elem["second"] }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
